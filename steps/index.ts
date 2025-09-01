@@ -11,6 +11,10 @@ When('I check System Administrator\\(admin\\) radio button', async ({ page }) =>
   Auth.checkAdminRadioBtn(page);
 });
 
+When('I click System Administrator\\(admin\\) radio button', async ({ page }) => {
+  Auth.clickAdminRadioBtn(page);
+});
+
 When('I check Other radio button', async ({ page }) => {
   await Auth.checkUsersRadioBtn(page);
 });
@@ -19,7 +23,7 @@ When('I enter a username {string}', async ({ page }, name: string) => {
   await Auth.fillUserFld(page, name);
 });
 
-When('I see the radio button', async ({ page }) => {
+When('I see the radio buttons for choosing user', async ({ page }) => {
   await expect(Auth.getAdminRadioBtnLocator(page)).toBeVisible();
   await expect(Auth.getUsersRadioBtnLocator(page)).toBeVisible();
 });
@@ -59,6 +63,14 @@ When('I click on {string} button', async ({ page }, name: string) => {
 
 When('I enter correct password', async ({ page }) => {
   await Auth.fillPswdFld(page, CPPSWD);
+});
+
+Then('I see the focus on Others users', async ({ page }) => {
+  await expect(Auth.getUserFldLocator(page)).toBeFocused();
+});
+
+Then('I see the focus on Password', async ({ page }) => {
+  await expect(Auth.getPswdFldLocator(page)).toBeFocused();
 });
 
 //When('I enter correct password', async ({ page }) => {

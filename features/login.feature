@@ -3,20 +3,30 @@ Feature: Enter an incorrect login
   Scenario: User see login form
     Given I open url to DLink page
     Then I see the text "Please Select Your Account:"
-    And I see the radio button
+    And I see the radio buttons for choosing user
     And I see the text "System Administrator(admin)"
+    And I see the text "Others :"
     And I see the text "Password:"
+    And I see the username field
     And I see the password field
     And I see the button "Login"
+
+  Scenario: Check the focus after clicking on System Administrator(admin) radio button
+    Given I open url to DLink page
+    When I click System Administrator(admin) radio button
+    Then I see the focus on Password
+
+  Scenario: Check the focus after clicking on Others (users) radio button
+    Given I open url to DLink page
+    When I check Other radio button
+    Then I see the focus on Others users
 
   Scenario: Check login with Other username ("Nadiya") and incorrect password
     Given I open url to DLink page
     When I check Other radio button
-    And I see the text "Others :"
-    And I see the username field
     And I enter a username "Nadiya"
     And I see the username "Nadiya" in the field
-    And I enter incorrect password 
+    And I enter incorrect password
     And I click on "Login" button
     Then I see the message "You entered an incorrect login name or password.Please try again."
 
@@ -28,7 +38,6 @@ Feature: Enter an incorrect login
     And I enter incorrect password
     And I click on "Login" button
     Then I see the message "You entered an incorrect login name or password.Please try again."
-
 
 
 #Scenario: Check login for admin with the correct password

@@ -16,6 +16,10 @@ export const Auth = {
   async checkAdminRadioBtn(page: Page): Promise<void> {
     await this.getAdminRadioBtnLocator(page).check();
   },
+  async clickAdminRadioBtn(page: Page): Promise<void> {
+    await this.getAdminRadioBtnLocator(page).click();
+  },
+
   async checkUsersRadioBtn(page: Page): Promise<void> {
     await this.getUsersRadioBtnLocator(page).check();
   },
