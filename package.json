@@ -1,0 +1,39 @@
+{
+  "name": "sample2.bdd",
+  "version": "1.0.0",
+  "description": "1. Ініціалізуй новий Node.js проєкт:\r    npm init -y",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx bddgen && npx playwright test",
+    "report": "npx http-server ./cucumber-report -c-1 -a localhost -o index.html",
+    "watch:bdd": "nodemon -w ./features -e feature,js,ts --exec \"npx bddgen\"",
+    "watch:pw": "playwright test --ui",
+    "watch": "run-p watch:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.3.0",
+    "dotenv": "^17.2.1",
+    "http-server": "14.1.1",
+    "nodemon": "^3.1.9",
+    "npm-run-all": "^4.1.5",
+    "playwright": "^1.55.0",
+    "playwright-bdd": "^8.4.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-gherkin": "^3.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NadiyaDyka/sample-bdd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NadiyaDyka/sample-bdd/issues"
+  },
+  "homepage": "https://github.com/NadiyaDyka/sample-bdd#readme"
+}
