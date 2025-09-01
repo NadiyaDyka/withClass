@@ -1,8 +1,45 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export const Auth = {
-  getPswdFldLocator( page: Page ): Locator {
+  getAdminRadioBtnLocator(page: Page): Locator {
+    return page.locator('#f_type1');
+  },
+
+  getUsersRadioBtnLocator(page: Page): Locator {
+    return page.locator('#f_type2');
+  },
+
+  getLoginBtnLocator(page: Page): Locator {
+    return page.locator('#submit_but');
+  },
+
+  async checkAdminRadioBtn(page: Page): Promise<void> {
+    await this.getAdminRadioBtnLocator(page).check();
+  },
+  async checkUsersRadioBtn(page: Page): Promise<void> {
+    await this.getUsersRadioBtnLocator(page).check();
+  },
+  getPswdFldLocator(page: Page): Locator {
     return page.locator('#pre_pwd');
-  }
-  //await page.getByRole('radio', { name: 'System Administrator(admin)' }).check();
+  },
+
+  getPswdLabelLocator(page: Page): Locator {
+    return page.getByText('Password');
+  },
+
+  async fillPswdFld(page: Page, cppswd: string): Promise<void> {
+    await this.getPswdFldLocator(page).click();
+    await this.getPswdFldLocator(page).fill(cppswd);
+  },
+
+  getUserFldLocator(page: Page): Locator {
+    return page.locator('#f_username');
+  },
+  getUserLabelLocator(page: Page): Locator {
+    return page.getByText('Others');
+  },
+
+  async fillUserFld(page: Page, name: string): Promise<void> {
+    await this.getUserFldLocator(page).fill(name);
+  },
 };
