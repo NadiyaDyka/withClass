@@ -65,6 +65,10 @@ When('I enter correct password', async ({ page }) => {
   await Auth.fillPswdFld(page, CPPSWD);
 });
 
+When('I login as admin with the wrong password', async ({ page }) => {
+  await Auth.loginAsAdmin(page, 'wrong');
+});
+
 Then('I see the focus on Others users', async ({ page }) => {
   await expect(Auth.getUserFldLocator(page)).toBeFocused();
 });

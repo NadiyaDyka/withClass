@@ -36,6 +36,12 @@ export const Auth = {
     await this.getPswdFldLocator(page).fill(cppswd);
   },
 
+  async loginAsAdmin(page: Page, cppswd: string): Promise<void> {
+    await this.clickAdminRadioBtn(page);
+    await this.fillPswdFld(page, cppswd);
+    await this.getLoginBtnLocator(page).click();
+  },
+
   getUserFldLocator(page: Page): Locator {
     return page.locator('#f_username');
   },

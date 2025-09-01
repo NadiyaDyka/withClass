@@ -32,11 +32,7 @@ Feature: Enter an incorrect login
 
   Scenario: Check login with System Administrator(admin) username and a wrong password
     Given I open url to DLink page
-    When I check System Administrator(admin) radio button
-    And I enter a username "admin"
-    And I see the username "admin" in the field
-    And I enter incorrect password
-    And I click on "Login" button
+    When I login as admin with the wrong password
     Then I see the message "You entered an incorrect login name or password.Please try again."
 
 
