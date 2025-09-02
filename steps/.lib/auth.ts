@@ -16,6 +16,7 @@ export const Auth = {
   async checkAdminRadioBtn(page: Page): Promise<void> {
     await this.getAdminRadioBtnLocator(page).check();
   },
+
   async clickAdminRadioBtn(page: Page): Promise<void> {
     await this.getAdminRadioBtnLocator(page).click();
   },
@@ -23,6 +24,7 @@ export const Auth = {
   async checkUsersRadioBtn(page: Page): Promise<void> {
     await this.getUsersRadioBtnLocator(page).check();
   },
+
   getPswdFldLocator(page: Page): Locator {
     return page.locator('#pre_pwd');
   },
@@ -45,6 +47,7 @@ export const Auth = {
   getUserFldLocator(page: Page): Locator {
     return page.locator('#f_username');
   },
+
   getUserLabelLocator(page: Page): Locator {
     return page.getByText('Others');
   },
@@ -52,4 +55,17 @@ export const Auth = {
   async fillUserFld(page: Page, name: string): Promise<void> {
     await this.getUserFldLocator(page).fill(name);
   },
+
+  getLoginSuccessLocator(page: Page): Locator {
+    return page.getByText('My Folder');
+    //return page.getByRole('link', { name: 'Log out' });
+  },
+
+  getlogoutBtnLocator(page: Page): Locator {
+    return page.getByRole('link', { name: 'Log out' });
+  },
+  
+  getLogoutSuccessLocator(page: Page): Locator {
+    return page.getByText('Please Select Your Account');
+  }
 };

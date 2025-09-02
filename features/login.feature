@@ -35,13 +35,15 @@ Feature: Enter an incorrect login
     When I login as admin with the wrong password
     Then I see the message "You entered an incorrect login name or password.Please try again."
 
+  @only
+  Scenario: Check login for admin with the correct password
+    Given I open url to DLink page
+    #When I enter correct credentials
+    When I click System Administrator(admin) radio button
+    And I enter correct password
+    And I click on "Login" button
+    Then I successfully logged in
 
-#Scenario: Check login for admin with the correct password
-#  Given I open url to DLink page
-#  When I click on radio button "System Administrator(admin)"
-#  And I enter the password
-#  And I click on "Login" button
-#  Then I see the text "My folder"
 
 #Scenario: I enter wrong password
 #  Given I open url "http://192.168.7.15/"

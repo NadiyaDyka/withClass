@@ -53,16 +53,16 @@ When('I enter incorrect password', async ({ page }) => {
   await Auth.fillPswdFld(page, 'wrong');
 });
 
+When('I enter correct password', async ({ page }) => {
+  await Auth.fillPswdFld(page, CPPSWD);
+});
+
 When('I see the password field', async ({ page }) => {
   await expect(Auth.getPswdFldLocator(page)).toBeVisible();
 });
 
 When('I click on {string} button', async ({ page }, name: string) => {
   await page.getByText(name, { exact: true }).click();
-});
-
-When('I enter correct password', async ({ page }) => {
-  await Auth.fillPswdFld(page, CPPSWD);
 });
 
 When('I login as admin with the wrong password', async ({ page }) => {
@@ -77,8 +77,14 @@ Then('I see the focus on Password', async ({ page }) => {
   await expect(Auth.getPswdFldLocator(page)).toBeFocused();
 });
 
-//When('I enter correct password', async ({ page }) => {
-//   await page.locator('#pre_pwd').click();
-//   await page.locator('#pre_pwd').fill(CPPSWD);
-//   await page.locator('#submit_but').click();
-// });
+Then('I successfully logged in', async ({ page }) => {
+  await expect
+    .soft(Auth.getLoginSuccessLocator(page), "I didn't find the text 'My Folder'") //soft mode, second parameter as message for user
+    .toBeVisible();
+  if (await Auth.getlogoutBtnLocator(page).isVisible()) {
+    await Auth.getlogoutBtnLocator(page).click();
+    await expect(Auth.getLogoutSuccessLocator(page)).toBeVisible();
+  } else {
+    expect(false,"I didn't find the 'Log out' button").toBe(true); //trick with expect to get message and mark test as failed
+  }
+});
