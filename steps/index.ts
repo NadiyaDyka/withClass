@@ -47,12 +47,7 @@ Then('I see the message {string}', async ({ page }, text: string) => {
 Then('I see the message for user {string}', async ({ page, pocket }, text: string) => {
   await expect(page.getByText(text)).toBeVisible();
   if (pocket.page2) {
-    if (await Auth.getlogoutBtnLocator(pocket.page2).isVisible()) {
-      await Auth.getlogoutBtnLocator(pocket.page2).click();
-      await expect(Auth.getLogoutSuccessLocator(pocket.page2)).toBeVisible();
-    } else {
-      expect(false, "I didn't find the 'Log out' button").toBe(true);
-    }
+    await Auth.logout(page2);
   }
 });
 
@@ -109,10 +104,5 @@ Then('I successfully logged in', async ({ page }) => {
   await expect
     .soft(Auth.getLoginSuccessLocator(page), "I didn't find the text 'My Folder'") //soft mode, second parameter as message for user
     .toBeVisible();
-  if (await Auth.getlogoutBtnLocator(page).isVisible()) {
-    await Auth.getlogoutBtnLocator(page).click();
-    await expect(Auth.getLogoutSuccessLocator(page)).toBeVisible();
-  } else {
-    expect(false, "I didn't find the 'Log out' button").toBe(true); //trick with expect to get message and mark test as failed
-  }
+  await Auth.logout(page);
 });

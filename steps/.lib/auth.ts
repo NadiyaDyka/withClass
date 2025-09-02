@@ -74,5 +74,13 @@ export const Auth = {
   getLogoutSuccessLocator(page: Page): Locator {
     return page.getByText('Please Select Your Account');
   },
-  
+
+  async logout(page: Page): Promise<void> {
+    if (await this.getlogoutBtnLocator(page).isVisible()) {
+      await this.getlogoutBtnLocator(page).click();
+      await expect(this.getLogoutSuccessLocator(page)).toBeVisible();
+    } else {
+      expect(false, "I didn't find the 'Log out' button").toBe(true); //trick with expect to get message and mark test as failed
+    }   
+  }
 };

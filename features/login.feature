@@ -49,7 +49,7 @@ Feature: Enter an incorrect login
     And I enter correct password for user
     And I click on "Login" button
     Then I successfully logged in
-
+  @only
   Scenario: Check login for user Others (admin) with the correct password
     Given I open url to DLink page
     When I check Other radio button
