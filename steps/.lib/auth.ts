@@ -33,9 +33,9 @@ export const Auth = {
     return page.getByText('Password');
   },
 
-  async fillPswdFld(page: Page, cppswd: string): Promise<void> {
+  async fillPswdFld(page: Page, password: string): Promise<void> {
     await this.getPswdFldLocator(page).click();
-    await this.getPswdFldLocator(page).fill(cppswd);
+    await this.getPswdFldLocator(page).fill(password);
   },
 
   async loginAsAdmin(page: Page, cppswd: string): Promise<void> {
@@ -44,9 +44,10 @@ export const Auth = {
     await this.getLoginBtnLocator(page).click();
   },
 
-  async loginAsUser(page: Page, cpuserpswd: string): Promise<void> {
+  async loginAsUser(page: Page, username: string, CPUSERPSWD: string): Promise<void> {
     await this.checkUsersRadioBtn(page);
-    await this.fillPswdFld(page, cpuserpswd);
+    await this.fillUserFld(page, username);
+    await this.fillPswdFld(page, CPUSERPSWD);
     await this.getLoginBtnLocator(page).click();
   },
 

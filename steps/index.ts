@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 import { Given, When, Then } from './.fixtures/fixtures';
-import { CPURL, CPPSWD, CPUSERPSWD, CPUSER } from './.lib/env';
+import { CPURL, CPPSWD, CPUSERPSWD } from './.lib/env';
 import { Auth } from './.lib/auth';
 
 Given('I open url to DLink page', async ({ page }) => {
@@ -90,6 +90,18 @@ When('I click on {string} button', async ({ page }, name: string) => {
 
 When('I login as admin with the wrong password', async ({ page }) => {
   await Auth.loginAsAdmin(page, 'wrong');
+});
+
+When('I login as Others user {string}', async ({ page }, username) => {
+  await Auth.loginAsUser(page, username, CPPSWD);
+});
+
+When('I login as System Administrator\\(admin)', async ({ page }) => {
+  await Auth.loginAsAdmin(page, CPPSWD);
+});
+
+When('I login as {string}', async ({ page }, username: string) => {
+  await Auth.loginAsUser(page, username, CPUSERPSWD);
 });
 
 Then('I see the focus on Others users', async ({ page }) => {

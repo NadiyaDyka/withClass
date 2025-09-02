@@ -37,25 +37,17 @@ Feature: Enter an incorrect login
 
   Scenario: Check login for System Administrator(admin) with the correct password
     Given I open url to DLink page
-    When I click System Administrator(admin) radio button
-    And I enter correct password
-    And I click on "Login" button
+    When I login as System Administrator(admin)
     Then I successfully logged in
 
   Scenario: Check login for user "sbook3" with the correct password
     Given I open url to DLink page
-    When I check Other radio button
-    And I enter a username "sbook3"
-    And I enter correct password for user
-    And I click on "Login" button
+    When I login as "sbook3"
     Then I successfully logged in
-  @only
+
   Scenario: Check login for user Others (admin) with the correct password
     Given I open url to DLink page
-    When I check Other radio button
-    And I enter a username "admin"
-    And I enter correct password
-    And I click on "Login" button
+    When I login as Others user "admin"
     Then I successfully logged in
 
   #@only
