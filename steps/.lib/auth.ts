@@ -44,6 +44,12 @@ export const Auth = {
     await this.getLoginBtnLocator(page).click();
   },
 
+  async loginAsUser(page: Page, cpuserpswd: string): Promise<void> {
+    await this.checkUsersRadioBtn(page);
+    await this.fillPswdFld(page, cpuserpswd);
+    await this.getLoginBtnLocator(page).click();
+  },
+
   getUserFldLocator(page: Page): Locator {
     return page.locator('#f_username');
   },
@@ -64,8 +70,9 @@ export const Auth = {
   getlogoutBtnLocator(page: Page): Locator {
     return page.getByRole('link', { name: 'Log out' });
   },
-  
+
   getLogoutSuccessLocator(page: Page): Locator {
     return page.getByText('Please Select Your Account');
-  }
+  },
+  
 };

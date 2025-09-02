@@ -21,11 +21,11 @@ Feature: Enter an incorrect login
     When I check Other radio button
     Then I see the focus on Others users
 
-  Scenario: Check login with Other username ("Nadiya") and incorrect password
+  Scenario: Check login with Other username and incorrect password
     Given I open url to DLink page
     When I check Other radio button
-    And I enter a username "Nadiya"
-    And I see the username "Nadiya" in the field
+    And I enter a username "sbook3"
+    And I see the username "sbook3" in the field
     And I enter incorrect password
     And I click on "Login" button
     Then I see the message "You entered an incorrect login name or password.Please try again."
@@ -35,19 +35,34 @@ Feature: Enter an incorrect login
     When I login as admin with the wrong password
     Then I see the message "You entered an incorrect login name or password.Please try again."
 
-  @only
-  Scenario: Check login for admin with the correct password
+  Scenario: Check login for System Administrator(admin) with the correct password
     Given I open url to DLink page
-    #When I enter correct credentials
     When I click System Administrator(admin) radio button
     And I enter correct password
     And I click on "Login" button
     Then I successfully logged in
 
+  Scenario: Check login for user "sbook3" with the correct password
+    Given I open url to DLink page
+    When I check Other radio button
+    And I enter a username "sbook3"
+    And I enter correct password for user
+    And I click on "Login" button
+    Then I successfully logged in
 
-#Scenario: I enter wrong password
-#  Given I open url "http://192.168.7.15/"
-#  When I enter login "user"
-#  And I enter password "wrongpwd"
-#  And I click "Login"
-#  Then I see message "Wrong password"
+  Scenario: Check login for user Others (admin) with the correct password
+    Given I open url to DLink page
+    When I check Other radio button
+    And I enter a username "admin"
+    And I enter correct password
+    And I click on "Login" button
+    Then I successfully logged in
+
+  #@only
+  Scenario: Someone already logged in
+    Given someone already logged in as admin
+    And I open url to DLink page
+    When I click System Administrator(admin) radio button
+    And I enter correct password
+    And I click on "Login" button
+    Then I see the message for user "This user account is currently in use by somebody else"
